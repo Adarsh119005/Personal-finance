@@ -8,13 +8,19 @@ type Props = {
   transactions: Transaction[];
 };
 
+type CategoryData = {
+  category: string;
+  total: number;
+}[];
+
 const Dashboard = ({ transactions }: Props) => {
-  const groupByCategory = () => {
+  const groupByCategory = (): CategoryData => {
     const summaryMap: Record<string, number> = {};
 
     transactions.forEach((txn) => {
-      if (!summaryMap[txn.category]) summaryMap[txn.category] = 0;
-      summaryMap[txn.category] += txn.amount;
+      const category = txn.category || "Uncategorized";
+      if (!summaryMap[category]) summaryMap[category] = 0;
+      summaryMap[category] += txn.amount;
     });
 
     return Object.entries(summaryMap).map(([category, total]) => ({
@@ -29,7 +35,7 @@ const Dashboard = ({ transactions }: Props) => {
     <div className="p-4 space-y-6">
       <h1 className="text-2xl font-semibold">Dashboard</h1>
       <CategoryBreakdown data={categoryData} />
-      {/* Add more summary components here later */}
+      {/* You can add more insights or cards here later */}
     </div>
   );
 };

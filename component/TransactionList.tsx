@@ -62,7 +62,7 @@ export const TransactionList = ({
                 Edit
               </button>&nbsp;&nbsp;
               <button
-                onClick={() => deleteTransaction(transaction._id)}
+                onClick={() => deleteTransaction(transaction._id ?? '')}
                 className="text-red-500 hover:underline"
               >
                 Delete
