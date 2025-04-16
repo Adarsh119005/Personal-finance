@@ -5,12 +5,8 @@ import { Transaction } from "../../../../lib/models/Transaction";
 import { NextResponse } from "next/server";
 
 // PUT request to update a transaction by ID
-export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  const { id } = params;   // Await params before accessing id
-  const data = await req.json();
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+  const { id } = await params;
 
   try {
     await connectToDB();
@@ -28,8 +24,12 @@ export async function PUT(
   }
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
-  const { id } = await params;  // Await params before accessing id
+export async function PUT(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;   // Await params before accessing id
+  const data = await req.json();
   
   try {
     await connectToDB();
