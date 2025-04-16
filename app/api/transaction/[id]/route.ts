@@ -9,7 +9,7 @@ export async function PUT(
   req: Request,
   context: { params: { id: string } }
 ) {
-  const { id } = await context.params; 
+  const { id } = context.params; 
 
   try {
     await connectToDB();
