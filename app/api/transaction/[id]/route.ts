@@ -7,9 +7,10 @@ import { NextResponse } from "next/server";
 // PUT request to update a transaction by ID
 export async function PUT(
   req: Request,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
-  const { id } = context.params; 
+  const { id } = params;   // Await params before accessing id
+  const data = await req.json();
 
   try {
     await connectToDB();
