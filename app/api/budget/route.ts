@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { MongoClient, ObjectId } from "mongodb";
 
 const client = new MongoClient(process.env.MONGODB_URI!);
@@ -15,7 +15,8 @@ export const GET = async () => {
   }
 };
 
-export const POST = async (req: Request) => {
+export async function POST(req: NextRequest) {
+  const body = await req.json();
   try {
     const { category, amount, month } = await req.json();
     await client.connect();
