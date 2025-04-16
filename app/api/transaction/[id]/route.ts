@@ -28,8 +28,7 @@ export async function PUT(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  const { id } = params;   // Await params before accessing id
-  const data = await req.json();
+  const { id } = params;   // Await params before accessing id  
   
   try {
     await connectToDB();
