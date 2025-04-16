@@ -5,8 +5,11 @@ import { Transaction } from "../../../../lib/models/Transaction";
 import { NextResponse } from "next/server";
 
 // PUT request to update a transaction by ID
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
-  const { id } = await params;
+export async function PUT(
+  req: Request,
+  context: { params: { id: string } }
+) {
+  const { id } = await context.params; 
 
   try {
     await connectToDB();
