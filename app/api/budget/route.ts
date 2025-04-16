@@ -16,7 +16,6 @@ export const GET = async () => {
 };
 
 export async function POST(req: NextRequest) {
-  const body = await req.json();
   try {
     const { category, amount, month } = await req.json();
     await client.connect();
