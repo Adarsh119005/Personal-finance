@@ -2,16 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "../../../../lib/db";
 import { Transaction } from "../../../../lib/models/Transaction";
 
-// The correct type
-type RouteParamsContext = {
-  params: {
-    id: string;
-  };
-};
-
-// PUT request
-export async function PUT(req: NextRequest, context: RouteParamsContext) {
-  const { id } = context.params;
+// PUT request to update a transaction
+export async function PUT(req: NextRequest, { params }: any) {
+  const { id } = params;
 
   try {
     await connectToDB();
@@ -32,14 +25,14 @@ export async function PUT(req: NextRequest, context: RouteParamsContext) {
   }
 }
 
-// DELETE request
-export async function DELETE(req: NextRequest, context: RouteParamsContext) {
-  const { id } = context.params;
+// DELETE request to delete a transaction
+export async function DELETE(req: NextRequest, { params }: any) {
+  const { id } = params;
 
   try {
     await connectToDB();
-    const deleted = await Transaction.findByIdAndDelete(id);
 
+    const deleted = await Transaction.findByIdAndDelete(id);
     if (!deleted) {
       return NextResponse.json({ message: "Transaction not found" }, { status: 404 });
     }
