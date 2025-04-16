@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from "react";
 import BudgetComparisonChart from "../../component/BudgetComparisonChart";
 import SpendingInsights from "../../component/SpendingInsights";
